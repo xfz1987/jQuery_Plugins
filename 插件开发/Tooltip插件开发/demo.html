@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    *{margin:0;padding:0;font-size:14px;line-height:1.8;font-family:"微软雅黑";}
+    .container{width:500px;margin:30px auto;padding:20px 30px;position:relative;background-color:#fff;border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;box-shadow:0px 0px 0px 10px rgba(0,0,0,0.2);-moz-box-shadow:0px 0px 0px 10px rgba(0,0,0, 0.2);-webkit-box-shadow:0px 0px 0px 10px rgba(0,0,0, 0.2);}
+    .container h3{color:#09f;font-size:20px;}
+    .container .tooltip{color:#09f;cursor:pointer;display:inline-block;*display:inline;*zoom:1;}
+    /*toolTip CSS*/
+    .tooltipBox{background:#fff;line-height:1.6;border:1px solid #6cf;padding:20px;font-size:12px;border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px;overflow:auto;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>峰哥有话说</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem consequuntur cumque debitis deleniti deserunt dolorem eligendi enim et, ipsa ipsam libero magni nesciunt nihil nobis perferendis repellat tempore. Commodi, odit?
+      请关注我们的
+      <a class="tooltip" id="weibo">微博</a>
+      <a class="tooltip" id="weixin">微信</a>
+    </p>
+    <p>你不知道<a class="tooltip" id="logo">峰哥</a>，好吧，知道了那现在你肯定</p>
+    <p>快快加入<a class="tooltip" id="fengge">峰哥有话说</a></p>
+  </div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/Tooltip.js"></script>
+  <script>
+    $('.container').Tooltip({
+        linkid:'weibo',//超链接id
+        className:'tooltipBox',//定义tooltipbox的className
+        html:'没有呀',//内容
+        width:'',//可以设置，如果不设置则为auto
+        height:''//可以设置，如果不设置则为auto
+    });
+    $('.container').Tooltip({
+        linkid:'weixin',//超链接id
+        className:'tooltipBox',//定义tooltipbox的className
+        html:'xxxxxxx',//内容
+    });
+    $('.container').Tooltip({
+        linkid:'logo',//超链接id
+        className:'tooltipBox',//定义tooltipbox的className
+        html:'<img src="1.jpg" style="width:100px;height:100px;border:1px solid #eee;"></img>',//内容
+        width:'102'
+    });
+    $('.container').Tooltip({
+        linkid:'fengge',//超链接id
+        className:'tooltipBox',//定义tooltipbox的className
+        html:'<iframe src="http://www.baidu.com" width="600" height="300"></iframe>',//内容
+        width:'600',
+        height:'300'
+    });
+  </script>
+</body>
+</html>

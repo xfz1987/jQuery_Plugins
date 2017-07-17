@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>星星打分评价</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="appraise-area">
+		<h1>满意度评价</h1>
+		<dl>
+			<dt>销售人员服务满意度</dt>
+			<dd>
+				<span>评分:</span>
+				<ul class="starArea" data-count="0" data-edit="true">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<strong class="msg"></strong>
+			</dd>
+		</dl>
+		<dl>
+			<dt>设计师满意度</dt>
+			<dd>
+				<span>评分:</span>
+				<ul class="starArea" data-count="0" data-edit="true">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<strong class="msg"></strong>
+			</dd>
+		</dl>
+		<dl>
+			<dt>安装工满意度</dt>
+			<dd>
+				<span>评分:</span>
+				<ul class="starArea" data-count="0" data-edit="true">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<strong class="msg"></strong>
+			</dd>
+		</dl>
+		<dl>
+			<dt>不可编辑</dt>
+			<dd>
+				<span>评分:</span>
+				<ul class="starArea" data-count="3" data-edit="false">
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<strong class="msg"></strong>
+			</dd>
+		</dl>
+	</div>
+
+	<div class="no-edit">
+
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/star.js"></script>
+	<script>
+		Star.init($('.starArea'));
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可拖拽改变大小面板</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <style>
+        body{font-family:"微软雅黑";font-size:14px;color:#333;}
+        div{-webkit-user-select: none;user-select: none;-moz-user-select: none;}
+        .panel{width:400px;height:240px;border:1px solid #ccc;position:relative;}
+        .panel .title{background:#eee;text-align:center;line-height:30px;font-weight:bold;}
+    </style>
+</head>
+<body>
+    <div class="panel" id="ui-resizable">
+        <div class="title">Resizable Panel</div>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/resizable.js"></script>
+    <script>
+        $(function(){
+            $('#ui-resizable').Resizeable();
+        })
+
+    </script>
+</body>
+</html>

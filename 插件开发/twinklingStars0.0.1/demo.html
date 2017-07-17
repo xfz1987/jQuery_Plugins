@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>TwinklingStars</title>
+<link rel="stylesheet" href="css/twinklingStars.css">
+<style>
+	/*非必要的style,仅用于展示*/
+	.twinklingStars{
+		margin:20px auto;
+	}
+</style>
+<script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="js/twinklingStars.js"></script>
+</head>
+<body>
+	<h2>可编辑</h2>
+	<div class="twinklingStars" data-twinkling="0" data-editable="true"></div>
+	<div class="twinklingStars" data-twinkling="83" data-editable="true"></div>
+	<div class="twinklingStars" data-twinkling="42" data-editable="true"></div>
+	<hr>
+	<h2>不可编辑</h2>
+	<div class="twinklingStars" data-twinkling="0"></div>
+	<div class="twinklingStars" data-twinkling="26"></div>
+	<div class="twinklingStars" data-twinkling="100"></div>
+</body>
+<script>
+	twinklingStars.twinkle($(".twinklingStars"));
+</script>
+</html>

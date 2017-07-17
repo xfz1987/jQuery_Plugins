@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<script src="../jquery-1.7.2.min.js"></script>
+		<script src="My97DatePicker/WdatePicker.js"></script>
+		<title>日期插件使用</title>
+	</head>
+
+	<body>
+		<input type="text" id="mydate" class="Wdate"/>
+		<script>	
+          /*
+			  属性             类型    默认         说明
+			  doubleCalender    bool     f         t: 双月模式,弹出两个月日期框
+		      el               string   null       指定一个控件的id，存储日期显示值
+              dateFmt          string   yyyy-MM-dd 日期显示格式
+			  realDateFmt      string   yyyy-MM-dd 计算机可识别的真正日期的格式，勿改
+			  realTimeFmt      string   HH:mm:ss   
+		      minDate          string   1900-01-01 00:00:00  格式与 realDateFmt 保持一致
+			  maxDate          string   2099-12-31 23:59:59  格式与 realDateFmt 保持一致
+			  firstDayOfWeek   int      0           周的第一天为0, 1表示星期一
+			  isShowWeek       bool     false       是否显示周
+			  highLineWeekDay  bool     true        是否高亮显示周六、周日
+			  isShowClear      bool     true        是否显示清空按钮
+			  isShowOk         bool     true        是否显示确定按钮
+			  isShowToday      bool     true        是否显示今天按钮
+		  */
+		  /*
+		     事件  dp
+			 对象: dp.cal.getDateStr();- 返回选择前的日期对象格式化值
+			       dp.cal.getNewDateStr(); - 返回选择后的日期对象格式化值
+			           
+			 事件:（用于验证和提示）
+			 onpicking:选择日期时，触发
+			 onpicked:选择日期后，触发
+			 onclearing:清除已选日期时，触发
+			 oncleared:清除已选择日期后，触发
+		  */	  
+
+		  $("#mydate").focus(function(){
+				WdatePicker({
+					isShowWeek : true,
+					dateFmt : "yyyy年MM月dd日"
+				});
+		  });
+		</script>
+
+	</body>
+</html>

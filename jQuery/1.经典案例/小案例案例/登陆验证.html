@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<script src="jquery-v1.7.2/jquery-1.7.2.min.js"></script>
+	</head>
+
+	<body>
+		<form onsubmit="return formValidate()" action="#" method="post">
+			用户名:<input type="text" id="username" value="请输入用户名"/><span id="username_msg"></span><br/>
+			密  码:<input type="password" id="pwd"/><span id="pwd_msg"></span><br/>
+			<input type="submit" value="登录"/>
+		</form>
+		
+		<script>			
+			var usr_result = false,
+			    pwd_result = false;
+			$("#username").bind({
+				focus : function(){
+					if($(this).val() == this.defaultValue){
+						$(this).val("");
+						$("#username_msg").html("用户名为6~12位的英文字母").css("color","black");
+					}					
+				},
+				blur : function(){
+					if($(this).val()==""){
+						$(this).val(this.defaultValue);// 如果符合条件，则设置内容
+						$("#username_msg").html("用户名不能为空").css({"color":"red","font-weight":"bold"});	
+						return;
+					}else if(!/^[a-zA-Z]{6,12}$/.test($(this).val())){
+						$("#username_msg").html("用户名只能是6~12位的英文字母").css({"color":"red","font-weight":"bold"});
+						return;
+					}else{
+						$("#username_msg").html("OK").css("color","green");
+						usr_result = true;
+					}	
+				}
+			});
+			
+			$("#pwd").bind({
+				focus : function(){
+					$("#pwd_msg").html("请输入密码，密码为8~16位的英文、数字组合").css("color","black");
+				},
+				blur : function(){
+					if($(this).val()==""){
+						$("#pwd_msg").html("密码不能为空").css({"color":"red","font-weight":"bold"});
+						return;
+					}else if(!/^[a-zA-Z0-9]{8,16}$/.test($(this).val())){
+						$("#pwd_msg").html("密码只能为8~16位的英文、数字组合").css({"color":"red","font-weight":"bold"});
+						return;
+					}else{
+						$("#pwd_msg").html("OK").css("color","green");
+					}
+					pwd_result = true;
+				}
+			});
+
+			function formValidate(){ 
+				return usr_result && pwd_result;
+			}
+
+		</script>
+	</body>
+</html>

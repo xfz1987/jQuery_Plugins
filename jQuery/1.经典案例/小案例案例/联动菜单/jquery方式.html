@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<script src="../jquery-v1.7.2/jquery-1.7.2.min.js"></script>
+	</head>
+
+	<body>
+		<select id="province">
+			<option>--请选择--</option>
+		</select>
+		<select id="city">
+			<option>--请选择--</option>
+		</select>
+
+		<script>
+			$(document).ready(function(){
+				var data = [{
+							  province : "山东省", 
+							  cities : ["青岛市","葫芦岛市","济南市"]
+							},
+							{
+							  province : "辽宁省", 
+							  cities : ["大连市","沈阳市","铁岭市"]
+							},
+							{
+							  province : "吉林省",
+							  cities : ["长春市","吉林市","松原市"]
+							}
+						   ];
+					
+
+				for(var i=0,len=data.length;i<len;i++){
+					$("#province").append($("<option>" + data[i].province + "</option>")); 
+				}
+			
+				$("#province").change(function(e){
+					//$("#city").empty();
+					$("#city>option:gt(0)").remove();
+					var prov = $("#province>option:selected").text();
+
+					for(var i=0,len=data.length;i<len;i++){
+						if(prov == data[i].province){
+							for(var j =0,targetCities=data[i].cities,len2=targetCities.length;j<len2;j++){
+								$("#city").append($("<option>" + targetCities[j] + "</option>"));
+							}
+							break;
+						}
+					}	
+				});
+			});			
+		</script>
+	</body>
+</html>

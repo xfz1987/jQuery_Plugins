@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无序加载:相册浏览</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		html,body{height: 100%;}
+		.box{text-align: center;}
+		.btn{display: inline-block;height:30px;line-height: 30px;border:1px solid #ccc;background-color: #fff;padding:0 10px;margin-right: 50px;color: #333;text-decoration: none;}
+		.btn:hover{background: #eee;}
+		.loading{position: fixed;top: 0;left: 0;width: 100%;height: 100%;background: #eee;text-align: center;font-size: 30px;}
+		.progress{margin-top: 300px;}
+	</style>
+</head>
+<body>
+	<div class="loading">
+		<p class="progress">0%</p>
+	</div>
+
+	<div class="box">
+		<img id="img" src="http://i2.hoopchina.com.cn/user/308/15960308/13383588090.jpg" width="600" />
+		<p class="btn-group" style="margin-top: 20px;">
+			<a href="javascript:;" class="btn" data-control="prev">上一页</a>
+			<a href="javascript:;" class="btn" data-control="next">下一页</a>
+		</p>
+	</div>
+	<!-- <script src="../js/jquery.min.js"></script> -->
+<!-- 	<script>
+		var imgs = [
+			'http://i2.hoopchina.com.cn/user/308/15960308/13383588090.jpg',
+			'http://img.article.pchome.net/00/44/23/20/pic_lib/wm/2.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/404q4y8g4m0p.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/cgro54wt2t2x.jpg'
+		];
+
+		var index = 0,len = imgs.length,count = 0,$progress = $('.loading .progress');
+
+		$.each(imgs, function(index, item) {
+			var imgObj = new Image();
+			$(imgObj).on('load error',function(){
+				$progress.html(Math.round(++count / len * 100) + '%');
+				if(count >= len){
+					$('.loading').hide();
+					document.title = '1/' + len;
+				}
+			});
+			imgObj.src = item;
+		});
+
+		$('.btn').on('click',function(){
+			index = $(this).data('control') === 'prev' ? Math.max(0, --index) : Math.min(len-1, ++index);
+			document.title = (index+1) + '/' + len;
+			$('#img').attr('src', imgs[index]); 
+		});
+	</script> -->
+
+	<!--  jquery方式插件 -->
+	<!-- <script src="../js/preload_jq.js"></script> -->
+<!-- 	<script>
+		var imgs = [
+			'http://i2.hoopchina.com.cn/user/308/15960308/13383588090.jpg',
+			'http://img.article.pchome.net/00/44/23/20/pic_lib/wm/2.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/404q4y8g4m0p.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/cgro54wt2t2x.jpg'
+		];
+		var index = 0,len = imgs.length,$progress = $('.loading .progress')
+		$.preload(imgs, {
+			each: function(count){
+				$progress.html(Math.round(++count / len * 100) + '%');
+			},
+			all: function(){
+				$('.loading').hide();
+				document.title = '1/' + len;
+			}
+		});
+
+		$('.btn').on('click',function(){
+			index = $(this).data('control') === 'prev' ? Math.max(0, --index) : Math.min(len-1, ++index);
+			document.title = (index+1) + '/' + len;
+			$('#img').attr('src', imgs[index]); 
+		});
+	</script> -->
+	
+	<!-- js方式插件 -->
+	<script src="../js/preload.js"></script>
+	<script>
+		var imgs = [
+			'http://i2.hoopchina.com.cn/user/308/15960308/13383588090.jpg',
+			'http://img.article.pchome.net/00/44/23/20/pic_lib/wm/2.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/404q4y8g4m0p.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/cgro54wt2t2x.jpg'
+		];
+
+		var index = 0,len = imgs.length,count = 0,doc = document,progress = doc.getElementsByClassName('progress')[0];
+		preload(imgs, {
+			//每张图片加载完毕后执行
+			each: function(count){
+				progress.innerHTML = Math.round(++count / len * 100) + '%';
+			},
+			//所有图片加载完毕后执行
+			all: function(){
+				doc.getElementsByClassName('loading')[0].style.display = 'none';
+			}
+		});
+
+		doc.getElementsByClassName('btn-group')[0].onclick = function(e){
+			var e = window.event || e,target = e.target || e.srcElement;
+			index = target.getAttribute('data-control') === 'prev' ? Math.max(0, --index) : Math.min(len-1, ++index);
+			doc.getElementById('img').setAttribute('src', imgs[index]);
+		};
+	</script>
+</body>
+</html>

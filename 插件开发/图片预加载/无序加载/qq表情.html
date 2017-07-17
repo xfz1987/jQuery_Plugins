@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>QQ表情</title>
+	<style>
+		*{margin:0;padding:0;}
+		body{background-color: #eee;}
+		.box{margin:150px 0 0 200px;}
+		.face-btn{text-decoration: none;width:24px;height:24px;display: block;background: url('./images/3.gif') no-repeat 0 -2px;color:#333;text-indent:25px;outline: 0 none;}
+		.face-btn:hover{background: url(./images/11.gif) no-repeat 0 -2px;}
+		.panel{display:none;width:390px;padding:2px;border:1px solid #ccc;background-color:#fff;}
+		.loading{text-align: center;}
+		.list{list-style:none;}
+		.list li{display: inline-block;width:24px;height:24px;border:1px solid #fff;margin-bottom: 5px;cursor:pointer;}
+		.list li:hover{border-color: #06c;}
+	</style>
+</head>
+<body>
+<div class="box">
+	<a href="javascript:;" class="face-btn"></a>
+	<div class="panel">
+		<!-- p.loading{表情加载中，请稍后...} -->
+		<p class="loading">表情加载中，请稍后...</p>
+		<ul class="list">
+			<!-- li*130>img[src="face/qq/$.gif"] -->
+		</ul>
+	</div>
+</div>
+<!-- jquery 方式 -->
+<!-- <script src="../js/jquery.min.js"></script>
+<script src="../js/preload_jq.js"></script>
+<script>
+	var $btn = $('.face-btn'),$panel = $('.panel'),imgs = [];
+	for(var i=0;i<130;i++){
+		imgs.push('face/qq/' + (i+1) + '.gif');
+	}
+	var len = imgs.length;
+
+	$btn.click(function(e){
+		e.stopPropagation();
+
+		$panel.show();
+
+		$.preload(imgs, {
+			all: function(){
+				var $list = $('<ul class="list"></ul>'),_arr = [];
+				for(var i=0;i<len;i++){
+					_arr.push('<li><img src="' + imgs[i] + '"></li>')
+				}
+				//本地图片，模拟延迟效果
+				setTimeout(function(){
+					$panel.html($list.append(_arr.join('')));
+				},1000);
+			}
+		});
+	});
+
+	$(document).click(function(){
+		$panel.hide();
+	});
+
+</script> -->
+
+<!-- javascript方式 -->
+<script src="../js/preload.js"></script>
+<script>
+	var btn = document.getElementsByClassName('face-btn')[0],panel = document.getElementsByClassName('panel')[0],imgs = [];
+	for(var i=0;i<130;i++){
+		imgs.push('face/qq/' + (i+1) + '.gif');
+	}
+	var len = imgs.length;
+
+	btn.onclick = function(e){
+		if(e.stopPropagation){
+			e.stopPropagation();
+		}else{
+			e.cancelBubble = true;
+		}
+
+		panel.style.display = 'block';
+
+		preload(imgs, {
+			//所有图片加载完毕后执行
+			all: function(){
+				var list = document.createElement('ul'),loading = document.getElementsByClassName('loading')[0],_arr = [];
+				list.className = 'list';
+				for(var i=0;i<len;i++){
+					_arr.push('<li><img src="' + imgs[i] + '"></li>')
+				}
+
+				list.innerHTML = _arr.join('');
+				//本地图片，模拟延迟效果
+				setTimeout(function(){
+					panel.appendChild(list);
+					loading.style.display = 'none';
+				},1000);
+			}
+		});
+	};
+
+	document.onclick = function(){
+		panel.style.display = 'none';
+	};
+</script>
+</body>
+</html>

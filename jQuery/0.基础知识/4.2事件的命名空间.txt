@@ -1,0 +1,33 @@
+1.事件命名空间, 便于管理
+  例：根据命名空间，删除事件
+   $(function(){
+	$("div").bind("click.plugin",function(){
+	       $("body").append("<p>click事件</p>");
+	});
+	$("div").bind("mouseover.plugin", function(){
+	       $("body").append("<p>mouseover事件</p>");
+	});
+	$("div").bind("dblclick", function(){
+		   $("body").append("<p>dblclick事件</p>");
+	});
+	$("button").click(function() {
+		$("div").unbind(".plugin");  
+	})
+  })
+
+  结果:命名空间为.plugin 的事件都被删除了，只留下dbclick事件
+
+
+2.相同事件名称,不同命名空间执行方法
+    $(function(){
+	$("div").bind("click",function(){
+	       $("body").append("<p>click事件</p>");
+	});
+	$("div").bind("click.plugin", function(){
+	       $("body").append("<p>click.plugin事件</p>");
+	});
+	$("button").click(function() {
+		  $("div").trigger("click!");    // 注意click后面的感叹号,表示没有命名空间的事件
+		  //结果 <p>click事件</p>
+	});
+  })

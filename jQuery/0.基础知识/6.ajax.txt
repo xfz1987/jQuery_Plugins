@@ -1,0 +1,95 @@
+* 写法一
+
+	$.ajax( {
+		type : "POST",         //get，put,缺省为get
+		dataType : "json",     //html,xml,json,text
+		url : "xxx.do",
+		async : true,        //false，缺省为true
+		contentType : 'application/x-www-form-urlencoded,charset=UTF-8',            //text/plain,application/json
+		data : "page.currentPageNo="+currentPageNo+"&page.pageSize="+pageSize,  //或者 {page.currentPageNo:currentPageNo，page.pageSize:pageSize}
+		beforeSend : function(XMLHttpRequest) {				
+			//loading("正在处理，请稍后。。。");
+		},
+		success : function(msg) {
+			//closeLoading();
+			if("Success"==msg.status){
+				backLoadUser(msg);					
+			}else{
+				alert(msg.error);
+			}			
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) {
+			//closeLoading();
+			alert(errorThrown);
+		}
+	});  
+
+
+* Promise写法
+  $.ajax('url地址',{dataType='json',data=''})
+   .done(function(data){
+
+   })
+   .fail(function(xhr,status){
+
+   })
+   .always(function(){
+   		//无论请求成功或失败，都会执行
+   });
+
+
+* 使用ajaxSetup()方法设置全局Ajax默认选项
+  使用ajaxSetup()方法可以设置Ajax请求的一些全局性选项值，设置完成后，后面的Ajax请求将不需要再添加这些选项值，
+  它的调用格式为：
+  jQuery.ajaxSetup([options])或$.ajaxSetup([options])
+  
+  * example
+    $.ajaxSetup({
+    	dataType: 'json',
+    	success: function(data){
+    		$('ul').empty().append(data);
+    	}
+    	error: function(){}
+    });
+    $(#a1).click(function(){
+    	$.ajax({
+    		url:'a.php',
+    		data: d1
+    	});
+    });
+    $(#a2).click(function(){
+    	$.ajax({
+    		url:'b.php'
+    		data: d2
+    	});
+    });
+
+ * ajaxStart()和ajaxStop()
+   ajaxStart()和ajaxStop()方法是绑定Ajax事件
+   ajaxStart()方法用于在Ajax请求发出前触发函数，ajaxStop()方法用于在Ajax请求完成后触发函数。
+   它们的调用格式为：
+   $(selector).ajaxStart(function())和$(selector).ajaxStop(function())
+   * 类似于beforeSend
+   * example
+      $("#loading").ajaxStart(function(){
+   		 $(this).show();
+ 	  });
+ 	  $("#loading").ajaxStop(function(){
+   		$(this).hide();
+ 	  });
+ 	  $('#btn').click(function(){
+ 	  	var me = $(this);
+ 	  	me.attr('disabled',true);
+ 	  	$.ajax({
+ 	  		url:
+ 	  		dataType:
+ 	  		success:function(data){
+ 	  			me.attr('disabled',false);
+ 	  		}
+ 	  	});
+ 	  });
+ 	  
+
+
+
+

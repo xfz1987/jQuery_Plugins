@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>无序加载:相册浏览</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		.box{text-align: center;}
+		.btn{display: inline-block;height:30px;line-height: 30px;border:1px solid #ccc;background-color: #fff;padding:0 10px;margin-right: 50px;color: #333;text-decoration: none;}
+		.btn:hover{background: #eee;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<img id="img" src="http://i2.hoopchina.com.cn/user/308/15960308/13383588090.jpg" width="600" />
+		<p>
+			<a href="javascript:;" class="btn" data-control="prev">上一页</a>
+			<a href="javascript:;" class="btn" data-control="next">下一页</a>
+		</p>
+	</div>
+	<script src="../js/jquery.min.js"></script>
+	<script>
+		var imgs = [
+			'http://i2.hoopchina.com.cn/user/308/15960308/13383588090.jpg',
+			'http://img.article.pchome.net/00/44/23/20/pic_lib/wm/2.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/404q4y8g4m0p.jpg',
+			'http://lcd.yesky.com/imagelist/2009/044/cgro54wt2t2x.jpg'
+		];
+
+		var index = 0,len = imgs.length;
+
+		$('.btn').on('click',function(){
+			index = $(this).data('control') === 'prev' ? Math.max(0, --index) : Math.min(len-1, ++index);
+			document.title = (index+1) + '' + len;
+			$('#img').attr('src', imgs[index]); 
+		});
+	</script>
+</body>
+</html>

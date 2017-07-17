@@ -1,0 +1,25 @@
+1.多个事件绑定同一个函数
+ $("#elem").on("mouseover mouseout",function(){ });
+
+2.多个元素绑定同一事件
+ $('e1,e2').on('click',function(){});
+
+3.多个事件绑定不同函数
+  $("#elem").on({
+    mouseover:function(){},  
+    mouseout:function(){},
+  });
+
+4.委托机制
+  <div class="left">
+    <p class="aaron">
+        <a>目标节点</a> //点击在这个元素上
+    </p>
+  </div>
+  $("div").on("click","P",fn);
+
+  事件绑定在最上层div元素上，当用户触发在a元素上，事件将往上冒泡，一直会冒泡在div元素上。
+  如果提供了第二参数，那么事件在往上冒泡的过程中遇到了选择器匹配的元素，将会触发事件回调函数
+  同时支持，后来append进来的元素事件的绑定
+  
+

@@ -1,0 +1,63 @@
+【概述】
+
+ 1.Jquery是javascript的类库
+   封装了DOM操作、动画效果、Ajax异步交互等
+   不用考虑兼容性问题（除了2.0.x版本）
+   
+ 2.分类
+   jquery - web前端
+   jquery UI - 提供一系列的UI集成
+   jquery mobile - 专门针对移动开发
+   junit - js代码的单元测试
+   mozziler - 选择器
+ 
+ 3.版本
+   jquery 2.x - 不再支持IE8及之前版本
+   jquery 1.x - 学习参考
+
+ 4.基本用法
+   ①引入jquery文件
+     <script src="jquery.js" type="text/javascript"></script>
+   
+   ②$表示 jquery 对象    
+    $(DOM对象) - jquery对象
+    jquery对象.get(index)或jquery对象(0)- DOM对象
+    
+   ③jquery不成文的规则:
+     使用juery获取元素时，定义的变量前要使用"$" - 表示当前是jquery对象（区别于DOM）
+	
+   ④链式操作 $("").onclick().fuck().......bbb();
+
+
+ 5.jquery与其他库共存
+   其它库: prototype.js
+           YUI
+	   Mootools
+	   Ext_js等
+   
+   冲突 : $()工厂函数 - 被大量地应用在各种js库
+   解决办法 :  将$标识符的控制权交给其它库
+               ① jQuery.noConflict();
+	          jQuery("p").click();
+		  $("p2").style.display = "none";//其它库的对象
+
+	       ② 自定义一个短的快捷方式 
+	         var $j = jQuery.noConflict();
+                 $j("p").click();
+                 $("p2").style.display = "none";//其它库的对象
+	       
+	       ③ 将$作为别名使用
+	          jQuery.noConflict();
+		  function($){
+		      $("p").click();
+		  }
+		  $("p2").style.display = "none";//其它库的对象
+	       
+	       ④直接使用jQuery,没有必要调用"jQuery.noConflict()"函数
+	         jQuery("p").click();
+		 $("p2").style.display = "none";//其它库的对象
+   
+   
+ 6.jquery中的事件对象event 和 DOM中的event没有区别
+
+   

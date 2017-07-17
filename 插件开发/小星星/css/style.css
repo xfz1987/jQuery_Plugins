@@ -1,0 +1,24 @@
+*{margin:0;padding:0;}
+body{font-family:"微软雅黑";font-size:14px;color:#555;}
+ul li{list-style:none;}
+.appraise-area{width:500px;margin:0 auto;background:#eee;}
+.appraise-area h1{font-size:18px;padding:15px 0;}
+.appraise-area dl{padding:20px 0 20px 10px;margin-top:15px;border:1px solid #777;background:#fff;}
+.appraise-area dt{margin-bottom:10px;}
+.appraise-area dd{position:relative;}
+.appraise-area dd span{position:absolute;top:1px;left:0;}
+.starArea{overflow:hidden;padding-left:38px}
+.starArea li{float:left;width:19px;height:19px;background:url(../images/grayStar.png) no-repeat;background-size:100% 100%;margin-right:2px;cursor:pointer;}
+.appraise-area .msg{font-style:normal;position:absolute;top:1px;left:155px;color:red;}
+.starArea[data-count="1"] li:nth-of-type(1){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="2"] li:nth-of-type(1){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="2"] li:nth-of-type(2){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="3"] li:nth-of-type(1){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="3"] li:nth-of-type(2){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="3"] li:nth-of-type(3){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="4"] li:nth-of-type(1){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="4"] li:nth-of-type(2){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="4"] li:nth-of-type(3){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="4"] li:nth-of-type(4){background-image:url(../images/yellowStar.png);}
+.starArea[data-count="5"] li{background-image:url(../images/yellowStar.png);}
+

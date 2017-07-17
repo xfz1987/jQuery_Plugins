@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<!--1.引入jQuery UI的CSS文件-->
+		<link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.css">
+		<!--2.引入jQuery的js文件-->
+		<script src="../jquery-1.7.2.min.js"></script>
+		<!--3.引入jQuery UI的js文件-->
+		<script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+		<title>jQuery_UI_Sortable使用</title>
+		<style>
+			#myList{
+				width: 80px;
+				background: #EEE;
+				padding: 5px;
+				list-style: none;
+			}
+			#myList a{
+				text-decoration: none;
+				color: #0077B0;
+			}
+			#myList a:hover{
+				text-decoration: underline;
+			}
+			#myList .qlink{
+				font-size: 12px;
+				color: #666;
+				margin-left: 10px;
+			}		
+		</style>
+	</head>
+
+	<body>
+		<h3 color="red">可以拖动排序</h3>
+		<ul id="myList">
+			<li><a href="#">心情</a></li>
+			<li>
+				<a href="#">相册</a>
+				<a href="#" class="qlink">上传</a>
+			</li>
+			<li>
+				<a href="#">日志</a>
+				<a href="#" class="qlink">发表</a>
+			</li>
+			<li><a href="#">投票</a></li>
+			<li><a href="#">分享</a></li>
+			<li><a href="#">群组</a></li>
+		</ul>        
+		
+
+		<script>	
+			//$("#myList").sortable(); //直接让myList下的元素可以拖动排序
+			//$("#myList").sortable({delay:1}); //修复潜在链接点击问题
+			//获得排列顺序返回给服务器
+			$("#myList").sortable({
+				delay:1,	//修复潜在链接点击问题
+				stop:function() {
+					$.post(
+						"sortable.php",
+						$('#myList').sortable('serialize'),
+						function(response) {
+							alert(response);
+						}
+					);
+				}
+			});
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,42 @@
+*{
+  margin:0;
+  padding:0;
+}
+ul{
+  list-style:none;
+}
+
+.box{
+  width:789px;
+  height:auto;
+  margin:0 auto;
+}
+.list-box{
+  margin:0 auto;
+  width:700px;
+  height:42px;
+  border-bottom: 1px solid #eee;
+}
+.list{
+  float:right;
+  padding-top:10px;
+}
+.list-box ul li{
+  cursor:pointer;
+  width:31px;
+  height:26px;
+  float:left;
+  display:block;
+  background:url("img/1.png") no-repeat;
+}
+.changList .list-1-o{
+  width:240px;
+  height:240px;
+  border:1px solid #aaa;
+  float:left;
+  margin-left:20px;
+  margin-bottom: 20px;
+}
+.changList .list-2-v{
+  height:170px;
+}

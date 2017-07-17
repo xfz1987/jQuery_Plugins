@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>datepicker</title>
+	<link rel="stylesheet" href="./asset/datepick.css">
+	<style>
+		.my-time{
+			border:1px solid #ccc;
+			border-radius: 4px;
+			padding:5px;
+			height:24px;
+			line-height: 24px;
+			width: 230px;
+		}
+		.my-time:focus{
+			outline: 0 none;
+			border:1px solid #1abc9c;
+		}
+	</style>
+</head>
+<body>
+	<h3>默认input没值</h3>
+	<input type="text" id="time" class="my-time" readonly><br><br><br>
+	<h3>默认input有值</h3>
+	<input type="text" id="time1" class="my-time" value="1987-10-20" readonly><br><br><br>
+	<h3>默认input里面没有值，但通过js给input赋值了</h3>
+	<input type="text" id="time2" class="my-time" readonly><br><br><br>
+
+	<hr><br><br>
+	<h3>相同class的多个input</h3>
+	<input type="text" class="my-time ctime c1" readonly>
+	<input type="text" class="my-time ctime c2" readonly>
+	
+	<script src="./asset/datepick.js"></script>
+	<script>
+		//输入框时间必须是 'yyyy-MM-dd' 格式
+		var time = document.getElementById('time');
+		datepicker.init(time);
+
+		var time1 = document.getElementById('time1');
+		datepicker.init(time1);
+
+		var time2 = document.getElementById('time2');
+		time2.value = '2016-05-28';
+		datepicker.init(time2);
+		
+		var	times = document.querySelectorAll('.ctime');
+		datepicker.init(times);
+
+	</script>
+</body>
+</html>

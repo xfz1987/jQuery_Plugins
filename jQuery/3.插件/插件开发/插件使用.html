@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<!--1.引入jquery文件-->
+		<script src="../jquery-1.7.2.min.js"></script>
+		<!--2.引入自制插件-->
+		<script src="myPlus.js"></script>
+		<title>插件使用</title>
+	</head>
+
+	<body>
+		<input type="checkbox" checked/>
+		<input>
+		<script>	
+			var a = 5;
+			var b = 10;
+			alert(a + "," + b + ":比较大小");
+			// 将结果打印测试
+			console.log("最小值是:"+$.min(a,b)+"，最大值:"+jQuery.max(a,b));
+		
+			$("input[type=checkbox]").check();
+			$("input[type=radio]").uncheck();
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bling Search</title>
+    <style>
+        *{margin:0;padding:0;}
+        body{background:#333;}
+        .bg-div{position:relative;width:1128px;height:690px;margin:0 auto;background:url(images/river.jpg) no-repeat;}
+        .search-box{position:absolute;top:200px;left:300px;}
+        .logo{margin:-4px 18px 0 0;width:107px;height:53px;background:url(images/logo.png) no-repeat;}
+        .logo,form{float:left;}
+        form{background:#fff;padding:5px;}
+        input{outline:0 none;border:0;float:left;}
+        .search-btn{background:url(images/search-button.png) no-repeat;width:29px;height:29px;}
+        .search-txt{height:25px;line-height:25px;width:350px;}
+        .suggest{width:388px;background:#fff;border:1px solid #999;}
+        .suggest ul{list-style:none;}
+        .suggest ul li{padding:3px;font-size:14px;line-height:25px;cursor:pointer;}
+        .suggest ul li:hover{text-decoration:underline;background:#e5e5e5;}
+    </style>
+</head>
+<body>
+    <div class="bg-div">
+        <div class="search-box">
+            <div class="logo"></div>
+            <form action="#">
+                <input type="text" class="search-txt">
+                <input type="submit" value="" class="search-btn">
+            </form>
+        </div>
+    </div>
+    <div class="suggest" style="display:none;">
+        <ul></ul>
+    </div>
+    <script src="../jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('.suggest').css({'position':'absolute','top': $('form').offset().top+$('form').height()+10,'left':$('form').offset().left});
+            $('.search-txt').on('keyup',function(){
+                var searchText = $('.search-txt').val();
+                $.get('http://api.bing.com/qsonhs.aspx?q='+searchText,function(data){
+                    console.log(data);
+                    var d = d.AS.Results[0].Suggest;
+                    var html = '';
+                    for(var i=0,len=d.length;i<len;i++){
+                        html += '<li>' + d[i].Txt + '<li>';
+                    }
+                    $('.suggest ul').html(html);
+                    $('.suggest').show();
+                },'json');
+            });
+            $(document).on('click',function(){
+                $('.suggest').hide();
+            });
+            $('.suggest ul').on('click','li',function(){
+                location.href = 'http://cn.bing.com/search?q='+$(this).text();
+            });
+        });
+
+        $(function(){
+$.getJSON("http://query.yahooapis.com/v1/public/yql", {
+q: "select * from json where url=\"http://m.weather.com.cn/data/101010100.html\"",
+format: "json"
+}, function(data) {
+var $content = $("#content")
+if (data.query.results) {
+$content.text(JSON.stringify(data.query.results));
+} else {
+$content.text('no such code: ' + code);
+}
+});
+
+});
+
+    </script>
+</body>
+</html>

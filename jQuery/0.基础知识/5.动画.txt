@@ -1,0 +1,65 @@
+1.显示与隐藏
+  show(time)/hide(time)
+
+2.滑动（通过高度变化来实现）
+  slideDown(time) - 向下滑动，具有show()方法的作用
+    slideUp(time) - 向下滑动，具有hide()方法的作用
+slideToggle(time) - 通过高度变化来切换所有匹配元素的可见性
+
+3.淡入淡出（通过不透明度的变化来实现）
+  fadeIn(speed)  - 淡入 
+  fadeOut(speed) - 淡出
+  fadeTo(speed,opacity) - 把所有匹配元素的不透明度以渐进方式调整到指定的不透明度
+
+4.自定义动画
+  animate(param,options)   
+     param: 一组包含作为动画属性和终值的样式属性和及其值的集合
+	   {key1:value2,	
+	    key2:value2 	
+	   }            	
+
+     options:一组包含动画选项的值的集合。
+        duration,Number(默认值: "normal"),("slow", "normal", or "fast")或表示动画时长的毫秒数值(如：1000)
+        easing(默认值: "swing") 要使用的擦除效果的名称(需要插件支持).默认jQuery提供"linear" 和 "swing".
+        step  Callback
+        queue(默认值: true) 设定为false将使此动画不进入动画队列 
+
+   
+  stop() - 停止所有在指定元素上正在运行的动画。
+           如果队列中有等待执行的动画(并且clearQueue没有设为true)，他们将被马上执行
+    参数:clearQueue (可选): true，则清空队列，可以立即结束动画。
+
+         gotoEnd (可选)true 让当前正在执行的动画立即完成，并且重设show和hide的原始样式，调用回调函数等。
+
+  delay(time) - 设置一个延时来推迟执行队列中之后的项目。
+                jQuery 1.4新增。用于将队列中的函数延时执行。他既可以推迟动画队列的执行，也可以用于自定义队列。
+
+		例如:$('#foo').slideUp(300).delay(800).fadeIn(400);
+
+5.设置
+  jQuery.fx.off = true;//关闭页面上所有的动画
+
+$("button:eq(1)").click(function () {
+  $("#panel").stop();//停止当前动画，继续下一个动画
+});
+$("button:eq(2)").click(function () {
+  $("#panel").stop(true);//清除元素的所有动画
+});
+$("button:eq(3)").click(function () {
+  $("#panel").stop(false,true);//让当前动画直接到达末状态 ，继续下一个动画
+});
+$("button:eq(4)").click(function () {
+  $("#panel").stop(true,true);//清除元素的所有动画，让当前动画直接到达末状态
+
+
+
+
+
+
+
+
+
+
+
+
+  

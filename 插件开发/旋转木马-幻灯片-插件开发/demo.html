@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>旋转木马</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="poster-main J_Poster" data-setting='{"width":800,"height":270,"posterWidth":600,"posterHeight":270,"scale":0.9,"speed":300,"verticalAlign":"middle","autoPlay":true,"delay":3000}'>
+        <div class="poster-btn prev"></div>
+        <div class="poster-btn next"></div>
+        <ul class="poster-list">
+            <li><a href="#"><img src="images/1.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/2.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/3.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/4.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/5.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/6.jpg" width="100%"></a></li>
+        </ul>
+    </div>
+        <div class="poster-main P_Poster" data-setting='{"width":800,"height":270,"posterWidth":600,"posterHeight":270,"scale":0.9,"speed":300,"verticalAlign":"middle","autoPlay":true,"delay":3000}'>
+        <div class="poster-btn prev"></div>
+        <div class="poster-btn next"></div>
+        <ul class="poster-list">
+            <li><a href="#"><img src="images/1.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/2.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/3.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/4.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/5.jpg" width="100%"></a></li>
+            <li><a href="#"><img src="images/6.jpg" width="100%"></a></li>
+        </ul>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/carousel.js"></script>
+    <script>
+        //初始所有要使用幻灯片的类
+         Carousel.init($('.J_Poster'));
+         Carousel.init($('.P_Poster'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<!--1.1引入jQuery UI的CSS文件-->
+		<link rel="stylesheet" href="jquery-ui-1.11.4/jquery-ui.css">
+		<!--1.2引入jQuery form_validator的CSS文件-->
+		<link rel="stylesheet" href="formValidator4.0.1/style/validator.css"></link>
+		<!--2.引入jQuery的js文件-->
+		<script src="../jquery-1.7.2.min.js"></script>
+		<!--3.1.引入jQuery UI的js文件-->
+		<script src="jquery-ui-1.11.4/jquery-ui.js"></script>
+		<!--3.2.jQuery form_validator的js文件-->
+		<script src="formValidator4.0.1/formValidator-4.0.1.js"></script>
+		<!--3.3.jQuery form_validator_Regex的js文件-->
+		<script src="formValidator4.0.1/formValidatorRegex.js"></script>
+		<!--4.引入中文支持文件-->
+		<script src="jquery.ui.datepicker-zh-CN.js"></script>
+		<title>jQuery UI使用</title>
+	</head>
+
+	<body>
+		<div id="accordion">
+		    <!--页签的标题-->
+			<h3>菜单</h3>
+			<!--点击页签的内容-->
+			<div>
+				<p>还在建设中...</p>
+			</div>
+			<h3>关于</h3>
+			<div>
+				<p>你想知道么?</p>
+			</div>	
+		</div>
+		
+		<hr size="1" color="red">
+		类似搜索框：<input type="text" id="tags"/>
+        
+		<hr size="1" color="red">
+        用&lt;a&gt;标签实现按钮：<a href="#" id="likeButton">点我</a>
+		
+		<hr size="1" color="red">
+		日期:<input type="text" id="mydate"/>
+
+		<hr size="1" color="red">
+		弹出框:<button id="btn1">试一下</button>
+        <div id="mydialog" title="提示框" style="display:none;">
+			<p>Do you want to play?</p>
+		</div>
+
+		<h3>用户注册：将表单封装在jQuery UI的dialog中</h3>
+		<button id="btn2">注册</button>
+		<div id="userResigter" title="用户注册" style="display:none;">
+			<form id="testForm" action="#" method="post">
+				<table>
+					<tr>
+						<td width="15%" align="right">用户名:</td>
+						<td width="35%"><input type="text" id="username" /></td>
+						<!--预留:作为信息提示
+							使用formValidator表单验证插件，
+							在表单中定义一个div元素,id=验证元素的id值+Tip，必须这么写，否则没有效果
+						-->
+						<td width="45%"><div id="usernameTip"></div></td>
+					</tr>
+					<tr>
+						<td align="right">邮箱:</td>
+						<td><input type="text" id="email"/></td>
+						<td><div id="emailTip"></div></td>
+					</tr>
+					<tr>
+						<td align="right">密码:</td>
+						<td><input type="password" id="pwd"/></td>
+						<td><div id="pwdTip"></div></td>
+					</tr>
+					<tr>
+						<td align="right">确认密码:</td>
+						<td><input type="password" id="rePwd"/></td>
+						<td><div id="rePwdTip"></div></td>
+					</tr>
+					<tr>
+						<td align="right">性别:</td>
+						<td>
+							<input type="radio" id="male" name="sex" value="0"/>男
+							<input type="radio" id="female" name="sex" value="1"/>女
+						</td>
+						<td><div id="sexTip"></div></td>
+					</tr>
+					<tr>
+						<td align="right">爱好:</td>
+						<td>
+							<input type="checkbox" id="lg" name="love" />sports
+							<input type="checkbox" id="zg" name="love" value="2"/>music<br/>
+							<input type="checkbox" id="lb" name="love" value="3"/>read
+							<input type="checkbox" id="zg" name="love" value="4"/>travel
+						</td>
+						<td><div id="loveTip"></div></td>
+					</tr>
+					<tr>
+						<td align="right">联系方式:</td>
+						<td>
+							<input type="text" id="phone"/>
+						</td>
+						<td><div id="phoneTip"></div></td>
+					</tr>
+					<tr>
+						<td align="right">出生日期:</td>
+						<td>
+							<input type="text" id="birth" class="MDate"/>
+						</td>
+						<td><div id="birthTip">请输入您的出生日期</div></td>
+					</tr>
+					<tr>
+						<td align="right">身份证:</td>
+						<td>
+							<input type="text" id="identity"/>
+						</td>
+						<td><div id="identityTip"></div></td>
+					</tr>					
+					<tr>
+						<td align="right">联系地址:</td>
+						<td>
+							<select id="province">
+								<option>--请选择--</option>
+							</select>
+							<select id="city">
+								<option>--请选择--</option>
+							</select>
+						</td>
+						<td><div id="addrTip">请选择您的联系地址</div></td>
+					</tr>
+					<tr>
+						<td colspan="3">
+							<input type="button" id="btnX" value="不校验身份证"/>
+						</td>
+					</tr>								
+				</table>
+			</form>
+		</div>
+
+		<script>	
+			$("#accordion").accordion({
+				collapsible:true
+			});
+			
+			$("#tags").autocomplete({
+				source : ["html","css","jquery","html5"]
+			});
+
+			$("#likeButton").button().click(function(event){	
+				event.preventDefault();
+			});
+
+			$("#mydate").datepicker();
+
+			$("#btn1").click(function(){
+				$("#mydialog").dialog({
+					height: 180,
+					modal: true,//蒙版方式
+					buttons : {
+						"注册" : function(){$(this).dialog("close");},
+						"取消" : function(){$(this).dialog("close");}
+					}
+				});
+			});
+			
+			/*
+				注册模块相关内容
+			*/
+			$("#btn2").click(function(){
+				$("#userResigter").dialog({
+					/*
+						设置最小和最大宽度和高度，效果并不是随着页面的大小而变化
+						而是，允许在最小到最大之间进行手动缩放
+					*/
+					minWidth:700,
+					maxWidth:1000,
+					minHeight:550,
+					maxHeight:720,
+					modal:true,
+					buttons:{
+						"提交" : function(){
+							//相关判断逻辑，如果验证全部，才能提交
+							$("#testForm").submit();
+						},
+						"取消" : function(){$(this).dialog("close");}
+					}
+				});
+			});
+			$("#birth").datepicker();
+			
+			//初始化表单验证配置
+			$.formValidator.initConfig({
+				//validatorGroup - 对表单验证进行分组,默认为"1"
+				validatorGroup : "1",
+				//alertMessage - 是否弹窗(不用)
+
+				//submitOnce - 校验通过后，是否灰掉所有的提交按钮，表示按钮不可用
+				submitOnce : true,
+				
+				//onSuccess -  表示校验通过后的回调函数,返回false，阻止表单的提交
+				onSuccess : function(){//完成提交表单的逻辑
+					alert("注册成功");
+				},
+
+				//onError  - 表示校验失败后的回调函数
+				onError : function(){
+					alert("注册失败");
+				},
+				
+			});
+			
+			$("#username").formValidator({//表单验证方法
+				//当前验证是属于哪个验证组，与$.formValidator.initConfig中的validatorGroup相对应
+				validatorGroup : "1",
+				//获得焦点时的提示
+				onFocus : "请输入6~12位英文字母",
+				//当对应元素的值为空时，给出提示
+				onShow : "请输入用户名",
+				//验证通过时的提示
+				onCorrect : "该用户名允许注册"		
+			}).inputValidator({//元素验证方法
+				//对应元素值得最小长度/值
+				min : 6,
+				//对应元素值的最大长度/值
+				max : 12,
+				//输入不符合设置时的错误提示
+				onError : "用户名输入不正确"
+			}).regexValidator({//
+				//定义正则表达式
+				regExp : "^[a-zA-Z]{6,12}$",
+				onError : "用户名输入不正确"
+			});   
+
+			$("#email").formValidator({
+				validatorGroup : "1",
+				onFocus : "请输入正确格式的电子邮箱",
+				onShow : "请输入邮箱地址",
+				onCorrect : "邮箱输入正确"
+			}).regexValidator({
+				regExp : "^([\\w-.]+)@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.)|(([\\w-]+.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$",
+				onError : "邮箱格式输入不正确"
+			});
+
+			$("#pwd").formValidator({
+				validatorGroup : "1",
+				onFocus : "请输入8~16位的英文、数字组合",
+				onShow : "请输入密码",
+				onCorrect : "密码输入正确"
+			}).regexValidator({
+				regExp : "^[a-zA-Z0-9]{8,16}$",
+				onError : "密码输入不正确"
+			});
+
+			$("#rePwd").formValidator({
+				validatorGroup : "1",
+				onFocus : "请输入8~16位的英文、数字组合",
+				onShow : "请再次输入密码",
+				onCorrect : "密码输入正确"
+			}).regexValidator({
+				regExp : "^[a-zA-Z0-9]{8,16}$",
+				onError : "密码输入不正确"
+			}).compareValidator({
+				//要比较控件的ID
+				desID : "pwd",
+				//比较符号: =、!=、>、>=、<、<=
+				operateor : "=",
+				//数据类型 目前只支持2种:"string"、"number"
+				datatype : "string",
+				onError : "两次密码输入不一致"
+			});
+
+			$(":radio[name='sex']").formValidator({
+				validatorGroup : "1",
+				tipID : "sexTip", 　
+				onFocus : "请根据自身情况选择性别",
+				onShow : "请选择性别",
+				defaultValue : ["0"],
+				onCorrect : "性别选择正确"	
+			}).inputValidator({
+				min : 1,
+				max : 1
+			}).defaultPassed();//让赋了初始值的表单元素默认校验通过
+			
+			/*
+			$(":checkbox[name='love']").formValidator({
+				validatorGroup : "1",
+				tipID : "loveTip",
+				onFocus : "请至少选择一项爱好",
+				onShow : "请选择爱好",
+				onCorrect : "爱好选择正确"
+			}).inputValidator({
+				min : 1,
+				max : 2,
+				onError : "至少选择一项,最多两项"
+			});*/
+
+			$("#phone").formValidator({
+				validatorGroup : "1",
+				onFocus : "请输入联系方式",
+				onEmpty : "联系方式不能为空",
+				onCorrect : "联系方式输入正确"
+			}).regexValidator({
+				regExp : "^1[34578]\\d{9}$",
+				onError : "联系方式输入不正确"
+			});
+			
+			$("#birth").formValidator({
+				validatorGroup : "1",
+				onShow : "请输入出生日期",
+				onFocus : "请选择您的出生日期",
+				onCorrect : "输入正确",
+				defaultValue : ["1987-10-20"]
+			}).inputValidator({
+				min : "1900-01-01",
+				max : "2099-01-01",
+				type : "date",
+				onError : "日期必须在\"1900-01-01\"和\"2099-01-01\"之间"
+			});
+
+			$("#identity").formValidator({
+				validatorGroup : "1",
+				onShow:"请输入15或18位的身份证",
+				onFocus:"输入15或18位的身份证",
+				onCorrect:"输入正确"
+			}).functionValidator({
+				//校验身份证的封装方法
+				fun:isCardID
+			});
+
+			//身份证是否校验切换
+			$("#btnX").bind("click",function(){
+				if($(this).val() == "不校验身份证"){
+					$("#identity").attr("disabled",true).unFormValidator(true);
+					$(this).val("校验身份证");
+				}else{
+					$("#identity").attr("disabled",false).unFormValidator(false);
+					$(this).val("不校验身份证");
+				}
+			});
+
+		</script>
+
+	</body>
+</html>

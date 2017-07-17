@@ -1,0 +1,40 @@
+1.CSS
+  css(name,value) - 设置css
+  css({"name1":"value1","name2":"value2"}) - 设置多个样式
+  css(name) - 根据属性名获取css属性值
+
+  toggleClass(className) - 切换css类
+
+2.尺寸
+  height()    - 取得第一个匹配元素当前计算的高度值（px）
+  height(val) - 设置所有匹配的元素CSS高度属性的值
+                如果没有明确指定单位（如：em或%）,使用px
+  width()     - 用法同上
+  width(val)  - 用法同上
+  
+  innerHeight() - 获取第一个匹配元素内部区域高度（包括补白、不包括边框） 此方法对可见和隐藏元素均有效
+  innerWidth()  - 获取第一个匹配元素内部区域宽度（包括补白、不包括边框） 此方法对可见和隐藏元素均有效
+ 
+  outerHeight() - 获取第一个匹配元素外部高度（默认包括补白和边框） 此方法对可见和隐藏元素均有效
+  outerHeight(true) - 将边距计算在内
+  outerWidth()  - 获取第一个匹配元素外部宽度（默认包括补白和边框） 此方法对可见和隐藏元素均有效
+  outerWidth(true)  - 将边距计算在内
+
+3.位置
+  offset()  -  获取匹配元素在当前视口的相对偏移(返回对象包含top和left两个属性)
+               （注意:此方法只对可见元素有效）
+  offset(content) - 设置匹配元素相对于document对象的坐标。
+                    如果对象原先的position样式属性是static的话，会被改成relative来实现重定位。
+
+  position()  -  获取匹配元素相对父元素的偏移（top和left，为精确计算结果，请在补白、边框和填充属性上使用像素单位）
+                （注意:此方法只对可见元素有效）
+  scrollTop/Left() -  获取匹配元素相对滚动条顶部/左侧的偏移
+                    （注意:此方法对可见和隐藏元素均有效)
+  scrollTop/Left(val) -  设置匹配元素相对滚动条顶部/左侧的偏移  val:String~"XXpx"或Number~"XX"
+                        （注意:此方法对可见和隐藏元素均有效)
+
+
+
+
+
+

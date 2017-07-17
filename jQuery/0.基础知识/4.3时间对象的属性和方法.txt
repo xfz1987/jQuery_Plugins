@@ -1,0 +1,22 @@
+
+event.target：目标事件元素
+
+event.type：获取事件的类型
+
+event.pageX 和 event.pageY：获取鼠标当前相对于页面的坐标
+
+event.preventDefault() 方法：阻止默认行为
+
+event.stopPropagation() 方法：阻止事件冒泡
+
+event.which：获取在鼠标单击时，单击的是鼠标的哪个键
+
+event.which 将 event.keyCode 和 event.charCode 标准化了。event.which也将正常化的按钮按下(mousedown 和 mouseupevents)，左键报告1，中间键报告2，右键报告3
+
+event.currentTarget : 在事件冒泡过程中的当前DOM元素
+
+this和event.target的区别：
+
+js中事件是会冒泡的，所以this是可以变化的，但event.target不会变化，它永远是直接接受事件的目标DOM元素；
+
+.this和event.target都是dom对象

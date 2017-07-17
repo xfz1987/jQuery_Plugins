@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		th,td{padding:2px 5px;}
+		th{border-left:1px solid #FFFFFF; border-right:1px solid #C6C9CA; border-bottom:1px solid #C1C8D2; background-color:#F2F4F6; text-align:left;}
+		td{border-bottom:1px solid #E3E6EB; cursor:pointer;}
+		tr:hover,.bg{background-color:#f2f4f6;}
+
+		/*插件样式*/
+		.smart_menu_box{display:none; width:140px; position:absolute; z-index:201105;}
+		.smart_menu_body{padding:1px; border:1px solid #B8CBCB; background-color:#fff; -moz-box-shadow:2px 2px 5px #666; -webkit-box-shadow:2px 2px 5px #666; box-shadow:2px 2px 5px #666;}
+		.smart_menu_ul{margin:0; padding:0; list-style-type:none;}
+		.smart_menu_li{position:relative;}
+		.smart_menu_a{display:block; height:25px; line-height:24px; padding:0 5px 0 25px; color:#000; font-size:12px; text-decoration:none; overflow:hidden;}
+		.smart_menu_a:hover, .smart_menu_a_hover{background-color:#348CCC; color:#fff; text-decoration:none;}
+		.smart_menu_li_separate{line-height:0; margin:3px; border-bottom:1px solid #B8CBCB; font-size:0;}
+		.smart_menu_triangle{width:0; height:0; border:5px dashed transparent; border-left:5px solid #666; overflow:hidden; position:absolute; top:7px; right:5px;}
+		.smart_menu_a:hover .smart_menu_triangle, .smart_menu_a_hover .smart_menu_triangle{border-left-color:#fff;}
+		.smart_menu_li_hover .smart_menu_box{top:-1px; left:130px;}
+	</style>
+</head>
+<body>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" id="table1">
+        <tr>
+          <th width="6%" scope="col"><input type="checkbox" /></th>
+          <th width="15%" scope="col">发件人</th>
+          <th width="66%" scope="col">主题</th>
+          <th width="13%" scope="col">时间</th>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>MiFan.me</td>
+          <td><span id="subject">欢迎注册Mifan.me!</span></td>
+          <td>5月27日</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>豆瓣网</td>
+          <td>请激活您的账号，完成注册 </td>
+          <td>5月26日</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>SlideShare</td>
+          <td><div> <span id="subject2">Follow-up comment on 'ss-2670845'</span></div>
+          <div id="tagContainer" ck="tag"> </div></td>
+          <td>5月26日</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>点点网</td>
+          <td>欢迎来到点点网</td>
+          <td>5月26日</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>zhangxinxu</td>
+          <td>[张鑫旭-鑫空间-鑫生活]请审核：&ldquo;我曾经喜欢的一个姑娘要结婚了&rdquo;</td>
+          <td>5月26日</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>-宏达</td>
+          <td>回复：到你了，写写吧</td>
+          <td>5月24日</td>
+        </tr>
+    </table>
+	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" id="table2" style="margin-top:50px">
+        <tr>
+          <th width="6%" scope="col"><input type="checkbox" /></th>
+          <th width="15%" scope="col">发件人</th>
+          <th width="66%" scope="col">主题</th>
+          <th width="13%" scope="col">时间</th>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>1</td>
+          <td><span id="subject">aaaaaaaaaaaaaa</span></td>
+          <td>5月27日</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>2</td>
+          <td>bbbbbbbbb</td>
+          <td>5月26日</td>
+        </tr>
+        <tr>
+          <td><input type="checkbox" /></td>
+          <td>3</td>
+          <td><div>cccccccccccccccccccccc</div>
+          <td>5月26日</td>
+        </tr>
+    </table>
+
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-smartMenu-min.js"></script>
+	<script>
+		$(function(){
+			//选中样式切换
+			var funTrStyle = function(table){
+				var items = table.find("td :checkbox");
+				var count = 0;
+    			items.each(function(){
+        			if($(this).is(":checked")) {
+            			$(this).closest("tr").addClass("bg");
+            			count++;
+            			if(count === items.length){
+            				table.find("th :checkbox").prop("checked",true);
+            			}    
+        			}else{
+            			$(this).closest("tr").removeClass("bg");  
+            			table.find("th :checkbox").prop("checked",false);
+        			}
+    			});
+			};
+
+			var funTrGet = function(table) {
+    			return table.find("td :checkbox:checked").closest("tr");
+			};
+
+			//全反选
+			$("table th input").click(function(){
+    			var table = $(this).closest("table");
+    			if($(this).is(":checked")){
+        			table.find("td :checkbox").prop("checked",true);
+    			} else {
+        			table.find("td :checkbox").prop("checked",false);
+    			}
+    			funTrStyle(table);    
+			});
+
+			//单选
+			$("table td :checkbox").click(function(){
+				var table = $(this).closest("table");
+				funTrStyle(table);
+			});
+
+			//自定义右键上下文
+			var objDelete = {
+				    text: "删除",
+				    func: function() {
+				        $('#table2').append(funTrGet($('#table1')));
+				        $('#table2 tr').off().find(':checkbox').prop('checked',false);
+				        bindSmart("#table2",'增加',objAdd);
+				    }
+				}, objAdd = {
+				    text: "增加",
+				    func: function() {
+				       	$('#table1').append(funTrGet($('#table2')));
+				       	$('#table1 tr').off().find(':checkbox').prop('checked',false);;
+				       	bindSmart("#table1",'删除',objDelete);
+				    }
+				}
+
+			function bindSmart(selecor,nameText,menuData){
+				var table = $(selecor);
+				table.find("tr").smartMenu([[menuData]], {
+    				name: nameText,
+    				//根据已读与否状态显示不同的上下文菜单
+    				beforeShow: function() {
+    				    //右键选中当前行  
+    				    $(this).find(":checkbox").prop("checked", true);    
+    				    funTrStyle(table);
+    				}
+				});
+			}
+
+			//初始化右键
+			bindSmart("#table1",'删除',objDelete);
+			bindSmart("#table2",'增加',objAdd);
+
+
+			// $("#table1 tr").smartMenu([[objDelete]], {
+   //  			name: "delItems",
+   //  			//根据已读与否状态显示不同的上下文菜单
+   //  			beforeShow: function() {
+   //  			    //右键选中当前行  
+   //  			    $(this).find(":checkbox").prop("checked", true);    
+   //  			    funTrStyle($("#table1"));
+   //  			}
+			// });
+
+			// $("#table2 tr").smartMenu([[objAdd]], {
+   //  			name: "addItems",
+   //  			//根据已读与否状态显示不同的上下文菜单
+   //  			beforeShow: function() {
+   //  			    //右键选中当前行  
+   //  			    $(this).find(":checkbox").prop("checked", true);    
+   //  			    funTrStyle($("#table2"));
+   //  			}
+			// });
+		
+		 });
+	</script>
+</body>
+</html>

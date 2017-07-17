@@ -1,0 +1,13 @@
+遍历
+  ①$(selector).each(function(index,domEle){});
+      -index : 表示遍历当前jQuery对象的下标
+      -domEle : 表示遍历当前jQuery对象的每一个DOM对象
+
+  ②$/jQuery.each(object,function(index,domEle){});
+     -object : 当前遍历的jQuery对象或数组
+     -index : 表示遍历当前jQuery对象的下标
+     -domEle : 表示遍历当前jQuery对象的每一个DOM对象
+
+
+  注意:两个each()方法的回调函数允许不写形参的，
+       需要this指代eleDom，否则，无法使用形参内容

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<title>表格隔行变色</title>
+		<style>
+			.se1{background:yellow;}
+			.se2{background:pink;}
+		</style>
+		<script src="jquery-v1.7.2/jquery-1.7.2.min.js"></script>
+	</head>
+
+	<body>
+		<table width="500px" height="300px" border="1px">
+			<tr>
+				<td>编号</td>
+				<td>姓名</td>
+				<td>身份</td>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>张无忌</td>
+				<td>明教教主</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>赵敏</td>
+				<td>美女</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>周芷若</td>
+				<td>小婊砸</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>小昭</td>
+				<td>小情</td>
+			</tr>
+		</table>
+		<script>	
+		    //1.为table添加背景色
+			$("table tr").each(function(index,eleDom){
+				index%2 != 0 ? $(eleDom).attr("class","se2") : $(eleDom).attr("class","se1");
+			});
+		</script>
+
+	</body>
+</html>

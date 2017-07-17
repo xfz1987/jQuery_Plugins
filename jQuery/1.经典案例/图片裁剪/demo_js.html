@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用于上传图片时，图片的裁剪</title>
+    <style>
+        *{margin:0;padding:0;}
+        body{background:#333;}
+        .box{margin:100px 0 0 200px;position:relative;width:460px;height:360px;}
+        .box .img1{opacity:.5;}
+        .box .img2{position:absolute;top:0;left:0;clip:rect(0,200px,200px,0);}
+        /*clip:rect(top,right,bottom,left) 裁剪矩形，
+          top距离顶部的距离、right距离左边的距离、bottom距离顶部的距离、left距离左边的距离，
+          其实相当于将矩形确定了位置和大小
+        */
+
+        .mark{position:absolute;top:0;left:0;border:1px solid #fff;width:200px;height:200px;cursor:move;}
+        .mark .min{position:absolute;width:8px;height:8px;background:#fff;}
+        .mark .min-top-left{left:-4px;top:-4px;cursor:nw-resize;}
+        .mark .min-top-mid{left:50%;margin-left:-4px;top:-4px;cursor:n-resize;}
+        .mark .min-top-right{right:-4px;top:-4px;cursor:ne-resize;}
+        .mark .min-left-mid{left:-4px;top:50%;margin-top:-4px;cursor:w-resize;}
+        .mark .min-bottom-left{bottom:-4px;left:-4px;cursor:sw-resize;}
+        .mark .min-bottom-mid{bottom:-4px;left:50%;margin-left:-4px;cursor:s-resize;}
+        .mark .min-bottom-right{bottom:-4px;right:-4px;cursor:se-resize;}
+        .mark .min-right-mid{top:50%;margin-top:-4px;right:-4px;cursor:e-resize;}
+
+        .preview{position:absolute;width:460px;height:360px;top:100px;left:670px;}
+        .preview .img3{position:absolute;}
+
+        .save-area{position:fixed;top:100px;right:135px;}
+        .save-area .btn-save{background:#4B584D;color:#999;border:none;outline:none;cursor:pointer;padding:10px 15px;}
+    </style>
+</head>
+<body>
+    <div class="box">
+        <img class="img1" src="images/1.jpg">
+        <img class="img2" src="images/1.jpg">
+        <div id="mark" class="mark">
+            <div id="left-up" class="min min-top-left"></div>
+            <div id="up" class="min min-top-mid"></div>
+            <div id="right-up" class="min min-top-right"></div>
+            <div id="left" class="min min-left-mid"></div>
+            <div id="left-down" class="min min-bottom-left"></div>
+            <div id="down" class="min min-bottom-mid"></div>
+            <div id="right-down" class="min min-bottom-right"></div>
+            <div id="right" class="min min-right-mid"></div>
+        </div>
+    </div>
+    <div class="preview">
+        <img class="img3" src="images/1.jpg">
+    </div>
+    <div class="save-area">
+        <button class="btn-save">保存</button>
+    </div>
+
+    <script src="js/jquery-1.8.1.min.js"></script>
+    <script scr="js/jquery-ui-custom.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

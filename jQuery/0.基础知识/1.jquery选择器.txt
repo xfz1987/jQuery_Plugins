@@ -1,0 +1,87 @@
+【选择器】
+
+  【注意】
+   1.特殊符号需要转义,前面加 \\
+    例如 id="id.a"  则 $("#id\\a")
+            "id#b"  则 $("#id\\#b")
+	    "id[1]" 则 $("#id\\[1\\]")
+  
+   2.注意空格：有空格，表示后代元素再过滤
+     例如  $(".test:hidden") - 所有隐藏的class为test的元素
+           $(".test :hidden") - 所有class为test的元素的隐藏的后代元素
+
+一、基本选择器
+    *优先级(同Css): #id .class parent > child
+    1.#id ：通过id值获取指定元素的jquery对象 
+    2.element ：元素选择器
+    3..class  ：类选择器
+    4.*       ：通用选择器
+    5.selector1,selector2,...,selectorN  ：结果是并级
+
+二、层次选择器
+    1.父 子：后代选择器
+    2.父>子：子代选择器
+    3.prev + next : prev后面相邻兄弟选择器
+    4.prev ~ siblings : prev后面通用兄弟选择器
+
+三、过滤选择器
+   1.基本过滤选择器
+     :first     : 获取第一个元素
+     :last      : 获取最后一个元素
+     :not       : 去除所有与给定选择器匹配的元素（例如:not(div a) 和 :not(div,a)）
+     :even      : 匹配所有索引值为偶数的元素，从 0 开始计数
+     :odd       : 匹配所有索引值为奇数的元素，从 0 开始计数
+     :eq(index) : 匹配一个给定索引值的元素,从 0 开始计数
+     :gt(index) : 匹配所有大于给定索引值的元素,从 0 开始计数
+     :lt(index) : 匹配所有小于给定索引值的元素,从 0 开始计数
+     :header    : 匹配如 h1 ~ h6 之类的标题元素
+     :animated  : 匹配所有正在执行动画效果的元素（该动画是由jquery完成的）
+
+   2.内容过滤选择器
+     :contains(text)   : 匹配包含给定文本的元素
+     :empty            : 匹配所有既不包含子元素也不包含文本的空元素
+     :parent           : 匹配含有子元素或者文本的元素
+     :has(selector)    : 匹配含有selector所匹配的元素的元素
+
+   3.可见度过滤选择器
+     :hidden  : 匹配所有不可见元素，或者type为hidden的元素
+     :visible :匹配所有的可见元素
+
+   4.属性过滤选择器
+     [属性名]        : 匹配包含给定属性的元素
+     [属性名=value]  : 匹配给定的属性是某个特定值的元素 
+     [属性名!=value] : 匹配所有不含有指定的属性，或者属性不等于特定值的元素（等价于:not([attr=value])）
+                       （要匹配含有特定属性但不等于特定值的元素，请使用[attr]:not([attr=value])）
+     [属性名^=value] : 匹配给定的属性是以某些值开始的元素
+     [属性名&=value] : 匹配给定的属性是以某些值结尾的元素
+     [属性名*=value] : 匹配给定的属性是以包含某些值的元素   
+     [selector1][selector2][selectorN]  :  复合属性过滤选择器，需要同时满足多个条件时使用。
+
+   5.子元素过滤选择器
+     :nth-child(index)      :  匹配其父元素下的第N个子或奇偶元素
+                               *要匹配元素的序号，从1开始
+     parent son:nth-child(even)\:nth-child(odd)\:nth-child(3n)\:nth-child(2)\:nth-child(3n+1)\:nth-child(3n+2)
+
+     parent son:first       :  匹配其父元素的第一个子元素
+     parent son:last        :  匹配最后一个子元素
+     parent son:only-child  :  如果某个元素是父元素中唯一的子元素，那将会被匹配
+
+   6.表单属性选择器
+     :enabled    :  匹配所有可用元素
+     :disabled   :  匹配所有不可用元素
+     :checked    :  匹配所有选中的被选中元素(复选框、单选框等，不包括select中的option)
+     :selected   :  匹配所有选中的option元素
+    
+   7.表单选择器
+     :image      :  匹配的是input元素的type="image"，并不是<img>元素
+     :text       :  匹配所有的单行文本框
+     :password   :  匹配所有密码框
+     :radio      :  匹配所有单选按钮
+     :checkbox   :  匹配所有复选框
+     :submit     :  匹配所有提交按钮
+     :reset      :  匹配所有重置按钮
+     :button     :  匹配所有按钮
+     :file       :  匹配所有文件域
+     :hidden     :  匹配所有不可见元素，或者type为hidden的元素
+     :input      :  匹配所有 input, textarea, select 和 button 元素
+      

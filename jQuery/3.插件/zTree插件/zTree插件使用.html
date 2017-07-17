@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="content-type" type="text/html" charset="utf-8"/>
+		<link rel="stylesheet" href="zTree_v3/css/zTreeStyle/zTreeStyle.css">
+		<script src="../jquery-1.7.2.min.js"></script>
+		<script src="zTree_v3/js/jquery.ztree.all-3.5.js"></script>
+		<title>zTree使用初探</title>
+	</head>
+
+	<body>
+	    <!--div作为树菜单的区域（可以自己设置相关的样式）-->
+		<div>
+		    <!--ul作为树菜单的根元素（样式类:.ztree是由插件提供的）-->
+			<ul id="treeDemo" class="ztree"></ul>
+		</div>
+		
+		<script>
+			/*
+				$.fn.zTree.init(obj,setting,nodes);
+				  *树菜单初始化，该方法必须使用
+				  - obj:用于展现zTree的元素容器
+				  - setting:树菜单的配置信息
+				  - nodes:zTree的节点数据
+				          数组格式[{},{},{}]
+						  id:类似目录结构中的层级
+						  pId:父级菜单id
+						  name:菜单名称
+						  open:true 默认展开
+						  isParent:true 作为没有孩子的父菜单
+						  iconOpen:图标地址
+						  iconClose:图标地址
+						  icon:图标地址
+						  url:URL连接地址
+						  target:_blank
+
+			*/
+			var setting = {
+				//设置菜单如何显示
+				view : {
+					//不显示连接线
+					showLine: false
+					//不显示节点图标
+					/*
+					showIcon: function(treeId, treeNode){
+						return !treeNode.isParent;
+					}*/
+				},
+
+				//设置节点树如何加载
+				data : {
+					//表示加载节点树以简单方式
+					simpleData : {
+						//开启简单加载模式
+						enable:true
+					}
+				}
+			};
+
+			
+			var zNodes = [
+				{id:1,pId:0,name:"北京市",open:true,iconOpen:"zTree_v3/css/zTreeStyle/img/diy/1_open.png", iconClose:"zTree_v3/css/zTreeStyle/img/diy/1_close.png"},
+				{id:11,pId:1,name:"海淀区",icon:"zTree_v3/css/zTreeStyle/img/diy/3.png"
+				,url:"http://www.ztree.me/", target:"_blank"},
+				{id:111,pId:11,name:"西苑",icon:"zTree_v3/css/zTreeStyle/img/diy/5.png"
+				,url:"", target:"_blank",
+				},
+				{id:112,pId:11,name:"中关村",icon:"zTree_v3/css/zTreeStyle/img/diy/5.png"},		
+				{id:12,pId:1,name:"东城区",icon:"zTree_v3/css/zTreeStyle/img/diy/2.png"},
+				{id:13,pId:1,name:"西城区", icon:"zTree_v3/css/zTreeStyle/img/diy/3.png"},
+				{id:14,pId:1,name:"朝阳区", icon:"zTree_v3/css/zTreeStyle/img/diy/4.png"},
+				
+				{id:2,pId:0,name:"天津市",iconOpen:"zTree_v3/css/zTreeStyle/img/diy/1_open.png", iconClose:"zTree_v3/css/zTreeStyle/img/diy/1_close.png"},
+				{id:21,pId:2,name:"南开区", icon:"zTree_v3/css/zTreeStyle/img/diy/2.png"},
+				{id:22,pId:2,name:"学府区", icon:"zTree_v3/css/zTreeStyle/img/diy/3.png"},
+				{id:23,pId:2,name:"大河区", icon:"zTree_v3/css/zTreeStyle/img/diy/4.png"},
+
+				{id:3,pId:0,name:"哈尔滨市",isParent:true,iconOpen:"zTree_v3/css/zTreeStyle/img/diy/1_open.png", iconClose:"zTree_v3/css/zTreeStyle/img/diy/1_close.png"},
+			];
+
+			$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+		</script>
+	</body>
+</html>
